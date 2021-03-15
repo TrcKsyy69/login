@@ -21,8 +21,8 @@ const validate = (e) => {
 
     } else if (!validatePassword(user, password)) {
         document.querySelector(".passwordError").classList.add("show")
-
     } else {
+        document.querySelector(".passwordCorrect").classList.add("show")
         // Do some CSS transitions on .box element
     }
 }
@@ -30,9 +30,15 @@ const validate = (e) => {
 const true$ = !false === true
 const false$ = !true === false
 
-const validatePassword = (user, pass) => {
+const validatePassword = (user, givenPassword) => {
+    // user --> { name: 'Marco', pass: '123'}
+    // pass --> "Whatever"
     // Check if passwords match --> true | false
-    return
+    return user.pass === givenPassword
+}
+
+const validateName = (user, givenName) => {
+    return user.name === givenName
 }
 
 // findUser1('mijnUserName', {name:'henk', pass: 'wachtwoord'})
