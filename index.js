@@ -1,10 +1,8 @@
-const users = [
+var users = [
     { name: 'Marco', pass: '123'},
     { name: 'Quirijn', pass: '456'},
     { name: 'X', pass: 'xxx'},
 ]
-
-const foo = { name: 'Element', type: 'password', name: 'pass', id: 'ww', value: '123'}
 
 const formulier = document.getElementById('form');
 
@@ -14,17 +12,25 @@ const validate = (e) => {
     const password = document.querySelector('input[name="pass"]').value
 
     const user = users.find(findUser2(username))
-    console.log("🚀 ~ file: index.js ~ line 17 ~ validate ~ user", user)
+    const renderClassError = renderError('.error')
 
-    if (user === undefined) {
-        document.querySelector(".error").classList.add("show")
-
+    if (username === null) {
+        renderClassError("Username cannot be empty.")
+    } else if(password === null) {
+        renderClassError("Password cannot be empty.")
+     } else if (user === undefined) {
+        renderClassError("User does not exist.")
     } else if (!validatePassword(user, password)) {
-        document.querySelector(".passwordError").classList.add("show")
+        renderClassError("Username cannot be empty.")
     } else {
         document.querySelector(".passwordCorrect").classList.add("show")
         // Do some CSS transitions on .box element
     }
+}
+
+const renderError = (className) => (message) => {
+    document.querySelector(className).innerHTML = message
+    document.querySelector(className).classList.add("show")
 }
 
 const true$ = !false === true
