@@ -1,10 +1,10 @@
 var users = [
     { name: 'Marco', pass: '123'},
-    { name: 'Quirijn', pass: '456'},
-    { name: 'X', pass: 'xxx'},
+    { name: 'Quirijn', pass: '456'}
 ]
 
 const formulier = document.getElementById('form');
+const signupForm = document.getElementById('formSignUp');
 
 const validate = (e) => {
     e.preventDefault();
@@ -24,7 +24,6 @@ const validate = (e) => {
         renderClassError("Username cannot be empty.")
     } else {
         document.querySelector(".passwordCorrect").classList.add("show")
-        // Do some CSS transitions on .box element
     }
 }
 
@@ -37,9 +36,6 @@ const true$ = !false === true
 const false$ = !true === false
 
 const validatePassword = (user, givenPassword) => {
-    // user --> { name: 'Marco', pass: '123'}
-    // pass --> "Whatever"
-    // Check if passwords match --> true | false
     return user.pass === givenPassword
 }
 
@@ -47,19 +43,45 @@ const validateName = (user, givenName) => {
     return user.name === givenName
 }
 
-// findUser1('mijnUserName', {name:'henk', pass: 'wachtwoord'})
-// const findUser1 (username, user) => {
-//     ...
-// }
-
-// findUser2('mijnUserName')({name:'henk', pass: 'wachtwoord'})
 const findUser2 = (username) => (user) => {
     return user.name === username
 }
 
-
-
-// function validate () {}
-
 formulier.addEventListener('submit', validate);
+signupForm.addEventListener('submit', validate);
 
+const validateSignup = () => {
+    e.preventDefault();
+    const username = document.querySelector('input[name="userSignup"]').value
+    const password = document.querySelector('input[name="userPassword"]').value
+
+    console.log(validatePassword(password));
+}
+
+function validatePassword (password) {
+    return  password.length >= 8 &&
+            password.match(/^[A-Za-z]+$/) &&
+            password.match(/^[0-9]+$/)
+}
+
+// Kloppen AL deze stellingen? --> neen
+5 > 1 &&    // true
+10 > 8 &&   // true
+3 > 6 &&    // neen
+69 > 42     // true
+
+10 < 14 &&  // true
+5 < 1 &&    // neen
+3 < 190     // true
+
+1 === 1 &&      // true
+10 === 10 &&    // true
+5 === 5         // true
+
+1 !== 1 &&      // true
+10 !== 10 &&    // true
+5 !== 5         // true
+
+5 > 1 &&
+10 < 11 &&
+69 === 69
